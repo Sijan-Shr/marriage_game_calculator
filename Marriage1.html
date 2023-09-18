@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+table, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<body>	
+
+	
+
+<label>Enter number of player:</label>
+
+<input id="id1" type="number" min="2" max="5" required="true" value="" placeholder="2">
+
+<button onclick="myFunction()">OK</button> </p>	
+<div>
+	
+<input type="text" name="player1" value="" placeholder="player1" id="p1">  <input type="checkbox" id="seen1" name="chkSeen" value="chkSeen1">   		<input class="new_input" type="text" name="name[]" id="p1Maal" value="" size="5"> <input type="radio" name="winner" value="winner1" id="rad1"><br><br>
+
+<input type="text" name="player2" value="" placeholder="player2"  id="p2"> <input type="checkbox" id="seen2" name="chkSeen" value="chkSeen2">   		<input class="new_input" type="text" name="name[]" id="p2Maal" value="" size="5"> <input type="radio" name="winner" value="winner2" id="rad2"><br><br>	
+
+<input type="text" name="player3" value="" placeholder="player3" id="p3">  <input type="checkbox" id="seen3" name="chkSeen" value="chkSeen3">   		<input class="new_input" type="text" name="name[]" id="p3Maal" value="" size="5"> <input type="radio" name="winner" value="winnner3" id="rad3"><br><br>	
+
+<input type="text" name="player4" value="" placeholder="player4" id="p4">  <input type="checkbox" id="seen4" name="chkSeen" value="chkSeen4">   		<input class="new_input" type="text" name="name[]" id="p4Maal" value="" size="5"> <input type="radio" name="winner" value="winner4" id="rad4"><br><br>	
+
+<input type="text" name="player5" value="" placeholder="player5" id="p5">  <input type="checkbox" id="seen5" name="chkSeen" value="chkSeen5">   		<input class="new_input" type="text" name="name[]" id="p5Maal" value="" size="5"> <input type="radio" name="winner" value="winner5" id="rad5"><br><br>	
+</div>
+<button onclick="check()">Submit</button>
+
+
+<script>
+	/*
+	var mysql = require('mysql');
+
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "myusername",
+  password: "mypassword"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  /*Create a database named "mydb":*/
+  /*con.query("CREATE DATABASE mydb", function (err, result) {
+    if (err) throw err;
+    console.log("Database created");
+  });
+});*/
+
+
+function myFunction() {
+	var inpObj=0; 
+
+	
+	
+  inpObj = document.getElementById("id1").value;
+  
+
+  if (inpObj == 2) {
+   
+    document.getElementById("p3").disabled="true";
+    document.getElementById("p4").disabled="true";
+    document.getElementById("p5").disabled="true";
+
+    document.getElementById("seen3").disabled="true";
+    document.getElementById("seen4").disabled="true";
+    document.getElementById("seen5").disabled="true";
+
+    document.getElementById("p3Maal").disabled="true";
+    document.getElementById("p4Maal").disabled="true";
+    document.getElementById("p5Maal").disabled="true";
+
+    document.getElementById("p3Maal").disabled="true";
+    document.getElementById("p4Maal").disabled="true";
+    document.getElementById("p5Maal").disabled="true";
+
+    document.getElementById("rad3").disabled="true";
+    document.getElementById("rad4").disabled="true";
+    document.getElementById("rad5").disabled="true";
+
+
+
+
+
+  } else if (inpObj == 3) {
+    
+    
+
+    document.getElementById("p4").disabled="true";
+    document.getElementById("p5").disabled="true";
+
+    document.getElementById("seen4").disabled="true";
+    document.getElementById("seen5").disabled="true";
+
+    document.getElementById("p4Maal").disabled="true";
+    document.getElementById("p5Maal").disabled="true";
+
+    document.getElementById("rad4").disabled="true";
+    document.getElementById("rad5").disabled="true";
+
+
+
+  } else if (inpObj == 4) {
+  
+   
+    document.getElementById("p5").disabled="true";
+
+    document.getElementById("seen5").disabled="true";
+
+    document.getElementById("p5Maal").disabled="true";
+
+    document.getElementById("rad5").disabled="true";
+
+
+
+
+    
+  } 
+} 
+
+
+function check()
+
+	{
+
+		var chkbox=document.getElementsByName("chkSeen");
+
+		var numPlayer=document.getElementById("id1").value;
+		var radioButtons=document.getElementsByName("winner");
+		var status;
+
+
+		
+		/*calculating total maal*/
+		//var tMaal=pmaal1+pmaal2+pmaal3+pmaal4+pmaal5;
+		var inputs = document.getElementsByClassName("new_input");
+		
+		var total =  0;
+            for(var i=0;i<numPlayer;i++)
+              {                  
+                
+                	
+                  total += Number(inputs[i].value);
+                
+               }
+		
+        var tMaal=total;
+		
+		
+
+for(var i = 0; i < numPlayer; i++)
+    {
+    	
+        if((chkbox[i].checked == true)&&(radioButtons[i].checked == true))
+        {
+
+        	status=2;
+        	        
+        	
+        }
+        	else if(chkbox[i].checked==false){
+        			status=0;
+        			 
+        			
+        			
+        		}
+        		else if((chkbox[i].checked == true)&&(radioButtons[i].checked == false)){
+        			status=1;
+        			                 			
+        			
+        			
+        		}
+
+              		
+              		var p=calculate(inputs[i].value,numPlayer,tMaal,status);
+              		//createlog(p);	
+              		
+              		createtable(p);
+       		 		alert(p);
+       		 		
+
+        }
+     			
+     			
+            		
+         
+	}
+
+
+
+	function calculate(playermaal,numofplayer,totalmaal,stat)
+			{
+    			//var point1=0;
+    			var status1=0;
+    			var numofplayer1=0;
+    			var totalmaal1=0;
+    			totalmaal1=totalmaal;
+    			numofplayer1=numofplayer;
+    			playermaal1=playermaal;
+    			status1=stat;
+
+				if(status1===1)
+					{
+						
+                    	point1=(playermaal1*numofplayer1)-(totalmaal1+3);
+    					
+    					
+					}
+				else if(status1===0)
+					{
+    					point1=-(totalmaal1+10);
+    					
+    					
+					}
+
+				else if(status1===2)
+					{
+					
+						var x=(Number(playermaal1))+(Number(3));
+						point1= (x*numofplayer1)-(totalmaal1+3);
+						
+						 
+
+	
+					}
+
+
+				return point1;
+
+
+}
+
+function createtable(m) {
+  var x = document.createElement("TABLE");
+  x.setAttribute("id", "myTable");
+  document.body.appendChild(x);
+
+  var y = document.createElement("TR");
+  y.setAttribute("id", "myTr");
+  document.getElementById("myTable").appendChild(y);
+
+  var z = document.createElement("TD");
+  var t = document.createTextNode(m);
+  z.appendChild(t);
+  document.getElementById("myTr").appendChild(z);
+}
+
+
+function createlog(j){
+	alert("i am here"+j);
+	const fs = require('fs');
+	let data=j;
+	fs.writeFile('Output.txt',data, (err) => { 
+      
+    // In case of a error throw err. 
+    if (err) throw err; 
+}) 
+}
+
+</script>
+</body>
+</html>
